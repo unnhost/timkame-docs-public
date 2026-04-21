@@ -209,6 +209,14 @@ Template for new entries:
 **Rationale:** v5→v4 CSS conversion is out of scope and high risk. v3 works. Ship, don't polish tooling.
 **Revisit by:** When Tailwind v4 ecosystem matures and migration path is clearer
 
+### DEC-033: Resend for transactional email + branded templates
+**Date:** 04/21/2026
+**Context:** Supabase built-in SMTP limits 4/hr, poor deliverability. OTP expiration + spam filtering blocked signup flow.
+**Options:** (a) Stay with Supabase SMTP, (b) Resend, (c) SendGrid, (d) AWS SES
+**Chosen:** (b) Resend. 100/day free tier, clean API, domain already verified with SPF/DKIM/DMARC.
+**Rationale:** Free tier covers MVP. Easy migration to paid ($20/mo for 50k). Better DX than SES. Direct API for signup + Supabase custom SMTP for auth-triggered emails.
+**Revisit by:** At 50k emails/month, evaluate AWS SES for cost
+
 ### DEC-028: Unified content blocks across all landing pages
 **Date:** 04/21/2026
 **Context:** 72 landing pages ported from v5. Eugene requires: change price once → updates everywhere.
