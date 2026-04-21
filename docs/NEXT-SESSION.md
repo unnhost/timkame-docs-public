@@ -10,6 +10,10 @@ v6 задеплоен на https://v6.timkame.com. Работает: Supabase Au
 2. **Notification settings** — email + Telegram preferences в dashboard — ~4 hrs
 3. **Webhook signature verification** — Telnyx webhook verify (всё ещё bypass) — ~2 hrs
 
+## Work Rule: Check v5 Reference First
+
+When adding a new feature to v6, check `docs/v5-reference.md` first — v5 likely already solved the design problem (layout, states, edge cases, copy). Port visual patterns and UX decisions, not code.
+
 ## Работает в проде
 
 - Supabase Auth (signup/login/logout, cookie sessions + JWT API)

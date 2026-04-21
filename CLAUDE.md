@@ -274,6 +274,8 @@ gh pr merge --squash --delete-branch
 | `docs/coding-standards.md` | Code rules (400-line, domain folders) |
 | `docs/roadmap.md` | 16-20 week implementation plan |
 | `docs/phase-0-checklist.md` | Eugene's infra setup tasks |
+| `docs/v5-reference.md` | v5 feature/design reference — check before building new features |
+| `docs/migration/v5-cherry-pick-plan.md` | v5→v6 migration plan with i18n audit |
 | `.github/workflows/sync-docs-to-public.yml` | Syncs docs to public mirror for Claude web context |
 
 ---
