@@ -209,6 +209,14 @@ Template for new entries:
 **Rationale:** v5→v4 CSS conversion is out of scope and high risk. v3 works. Ship, don't polish tooling.
 **Revisit by:** When Tailwind v4 ecosystem matures and migration path is clearer
 
+### DEC-028: Unified content blocks across all landing pages
+**Date:** 04/21/2026
+**Context:** 72 landing pages ported from v5. Eugene requires: change price once → updates everywhere.
+**Options:** (a) Manual find-replace across 72 files, (b) Template substitution at build time
+**Chosen:** (b) All .html files renamed to .html.template, build script replaces {{PLACEHOLDER}} patterns + literal price patterns. Generated .html files gitignored.
+**Rationale:** Single source of truth in scripts/build-landing.ts shared data + apps/web/content/landing-shared.ts. Change price once, rebuild, all 72 pages update. Build fails if unfilled placeholder found.
+**Revisit by:** If template system becomes too complex, consider static site generator (Astro, 11ty)
+
 ### DEC-027: v5 landing served as static HTML, not converted to React
 **Date:** 04/21/2026
 **Context:** v5 landing is a 3,736-line standalone HTML file with inline CSS/JS/SVG animations. Three previous port attempts failed by trying to reinterpret the design in React.
