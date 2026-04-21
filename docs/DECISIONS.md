@@ -201,6 +201,22 @@ Template for new entries:
 **Rationale:** Zero manual work after setup. Allowlist prevents leaks. Secret scan catches mistakes. SSH deploy key scoped to single repo — more secure than PAT, and can be created/rotated entirely via `gh` CLI.
 **Revisit by:** If customer PII lands in docs — switch to private mirror with API access.
 
+### DEC-025: Downgrade to Tailwind v3 for v5 frontend port
+**Date:** 04/21/2026
+**Context:** v5 frontend has 522 lines of globals.css + 51-line tailwind.config.js built for Tailwind v3. v6 currently has Tailwind v4 (CSS-based config). Converting v5 CSS to v4 is days of work with high regression risk.
+**Options:** (a) Keep v4, convert v5 CSS, (b) Downgrade to v3, preserve v5 CSS as-is, (c) Keep both (impossible)
+**Chosen:** (b) Downgrade v6 to Tailwind v3. Preserves 1 month of v5 design work. v3 is LTS and actively maintained.
+**Rationale:** v5→v4 CSS conversion is out of scope and high risk. v3 works. Ship, don't polish tooling.
+**Revisit by:** When Tailwind v4 ecosystem matures and migration path is clearer
+
+### DEC-026: Google OAuth deferred
+**Date:** 04/21/2026
+**Context:** v5 login had Google OAuth button. v6 port needs to decide whether to include it.
+**Options:** (a) Port Google OAuth, (b) Skip — email + password + magic link only
+**Chosen:** (b) Skip. Email + password + magic link via Supabase Auth only.
+**Rationale:** Google OAuth requires Supabase project configuration (OAuth credentials, redirect URLs). No customer has requested it. Add when customers ask for it.
+**Revisit by:** When customer requests it
+
 ### DEC-023: NEXT-SESSION.md as primary context restore file
 **Date:** 04/20/2026
 **Context:** Session continuity was fragile — TIMELINE, NEXT-SESSION, and MASTER-CHECKLIST all had overlapping info. Context restore loaded too many files, most of which were stale.
