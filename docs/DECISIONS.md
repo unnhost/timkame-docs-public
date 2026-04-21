@@ -209,6 +209,14 @@ Template for new entries:
 **Rationale:** v5→v4 CSS conversion is out of scope and high risk. v3 works. Ship, don't polish tooling.
 **Revisit by:** When Tailwind v4 ecosystem matures and migration path is clearer
 
+### DEC-027: v5 landing served as static HTML, not converted to React
+**Date:** 04/21/2026
+**Context:** v5 landing is a 3,736-line standalone HTML file with inline CSS/JS/SVG animations. Three previous port attempts failed by trying to reinterpret the design in React.
+**Options:** (a) Serve HTML as-is, (b) Convert to Next.js components
+**Chosen:** (a) Serve v5 HTML from apps/web/public/landing/, wire / route via Next.js rewrites, use build-time template substitution for variable data from content/landing.ts
+**Rationale:** Landing has no state/auth/backend integration — React adds no value. Preserves v5 design exactly. Days faster than conversion. Content blocks solved via template placeholders, not React props.
+**Revisit by:** When landing needs per-visitor personalization or A/B testing
+
 ### DEC-026: Google OAuth deferred
 **Date:** 04/21/2026
 **Context:** v5 login had Google OAuth button. v6 port needs to decide whether to include it.
