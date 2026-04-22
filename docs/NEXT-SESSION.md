@@ -2,7 +2,7 @@
 
 ## Текущее состояние
 
-v6 development session 04/21 — продакшен-готовый baseline:
+v6 development session 04/22 — pricing v2 PR A merged:
 - v5 frontend полностью портирован (PR #26-34): 150 файлов, 72 лендинговых страницы с unified content blocks, кот-маскот, gradient design
 - Signup flow работает end-to-end: signup → Resend email с брендингом → click confirm → session → dashboard ✅
 - Auth: login (email OTP + password), signup, email confirmation, /logout — все работает
@@ -10,6 +10,7 @@ v6 development session 04/21 — продакшен-готовый baseline:
 - Dashboard audit + cleanup (PR #33): 6 рабочих страниц, 22 dead nav links удалены
 - Public docs mirror: unnhost/timkame-docs-public
 - Все 72 vertical landing pages используют unified content blocks (меняешь цену в одном месте — обновляется везде)
+- **Pricing v2 PR A merged**: two-tier model ($39 Starter / $79 Professional), schema ready (plan_tier, overage_transactions, trial_usage_daily), all 72 landing pages updated, DEC-029/030/031 added. No runtime behavior changes yet.
 
 ## Известные проблемы
 
@@ -21,33 +22,23 @@ v6 development session 04/21 — продакшен-готовый baseline:
 
 4. **PR #25 webhook signature verification** — ready to merge, requires 24h logging-only rollout per spec before strict enforcement.
 
-5. **Pricing model approved, not implemented** — two-tier ($39 Starter / $79 Professional) with pre-paid overage credits + trial protections. Size L, multiple PRs. Full prompt saved in Eugene's notes.
+5. **Pricing v2 PR B pending** — trial protection + signup guards (Turnstile, disposable email block, IP rate limit, daily cap). Requires Turnstile keys in Doppler first.
 
-6. **Trial abuse protection not implemented** — Cloudflare Turnstile site key needed in Doppler. Eugene must create Turnstile site for v6.timkame.com first.
+6. **Pricing v2 PR C pending** — overage credits + Stripe checkout + dashboard billing UI. Requires Stripe test keys in Doppler.
 
 ## Следующие задачи (priority order)
 
 1. **Merge PR #25** (webhook signatures, 24h logging rollout) — S
 2. **Test password reset flow** end-to-end with real email — S
 3. **Fix dashboard logout button** + remaining @ts-nocheck cleanup — M
-4. **Pricing v2 implementation** (two-tier + pre-paid credits + trial protection) — L, multi-PR
-5. **Trial abuse protection** (after Turnstile keys in Doppler) — M
+4. **Pricing v2 PR B** (trial protection + signup guards) — M, requires Turnstile keys
+5. **Pricing v2 PR C** (overage + Stripe + dashboard billing) — L, requires Stripe test keys
 
-## Approved pricing model (для следующей сессии)
+## Pricing v2 status
 
-Starter: $39/mo, 150 min, $0.20/min overage
-Professional: $79/mo, 300 min, $0.19/min overage (Most Popular)
-Trial: 7 days, 15 min total, 3 calls/day, 3 min/call max, no overage
-
-Overage: PRE-PAID credits only ($10/$25/$50/$100), never expire, refundable on cancel within 30d, optional auto-refill (opt-in)
-
-Trial protection stack:
-- Cloudflare Turnstile on signup
-- 1 signup per IP per 24h
-- disposable-email-domains block
-- Global cap: 10 trial signups per day (waitlist when hit)
-- Hard mid-call cutoff (current call completes, next blocked)
-- Open-line abuse: silence detection, max 3 min/call, "Are you still there?" prompts
+PR A ✅ merged — schema + content + 72 landing pages (DEC-029/030/031)
+PR B ⏳ pending — trial protection + signup guards (needs Turnstile keys in Doppler)
+PR C ⏳ pending — overage credits + Stripe + dashboard billing (needs Stripe test keys)
 
 ## Work Rule: Check v5 Reference First
 
@@ -58,4 +49,4 @@ When adding a new feature to v6, check `docs/v5-reference.md` first — v5 likel
 Нет.
 
 ---
-Last updated: 2026-04-21T22:00:00-04:00
+Last updated: 2026-04-22T10:00:00-04:00

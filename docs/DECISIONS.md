@@ -248,3 +248,27 @@ Template for new entries:
 **Chosen:** (b) NEXT-SESSION as primary load-bearing file. Structured: текущее состояние, задачи с оценкой, фичи в проде, известные проблемы, блокеры. TIMELINE demoted to "only if debugging". MASTER-CHECKLIST removed from restore sequence.
 **Rationale:** One well-maintained file beats three stale ones. Reduces context restore from 3 reads to 1. Added session modes (короткая/глубокая) and weekly review template to prevent roadmap drift.
 **Revisit by:** After 4 weeks of use
+
+### DEC-029: Two-tier pricing replaces single tier
+**Date:** 04/22/2026
+**Context:** DEC-002 set single $79/500min tier. After research + Eugene's pricing concerns, two-tier model better captures price-sensitive Russian-speaking SMBs while preserving margins.
+**Options:** (a) Keep single tier, (b) Two-tier (Starter $39 + Professional $79), (c) Three-tier
+**Chosen:** (b) Starter $39/150min + Professional $79/300min (Most Popular). DEC-002 superseded.
+**Rationale:** Entry tier ($39) catches customers who balk at $79 — common reaction in target market. Professional tier preserves margin. Two tiers simpler than three, less decision paralysis.
+**Revisit by:** After 50 paying customers
+
+### DEC-030: Pre-paid overage credits replace post-paid billing
+**Date:** 04/22/2026
+**Context:** Original plan was post-paid overage with hard cap. Eugene flagged unpaid overage risk — customer goes over, declines to pay, $X loss.
+**Options:** (a) Post-paid hard cap, (b) Pre-paid credits only, (c) Hybrid
+**Chosen:** (b) Pre-paid credits ($10/$25/$50/$100), never expire, refundable on cancel within 30 days, optional auto-refill
+**Rationale:** Zero credit risk. Customer controls spend. Familiar mental model (Uber credits, prepaid SIM). Eliminates payment disputes.
+**Revisit by:** After 50 paying customers — re-evaluate if customers request post-paid
+
+### DEC-031: Trial caps tightened
+**Date:** 04/22/2026
+**Context:** DEC-002 trial = 14 days, 500 min. Trial abuse risk + cost per fake signup.
+**Options:** (a) Keep 14d/500min, (b) 7 days unlimited, (c) 7 days with hard caps
+**Chosen:** (c) 7 days, 15 min total, 3 calls/day, 3 min/call max
+**Rationale:** Limits abuse cost to ~$1.05 per spammer. Enough for real prospect to test (6 calls). Industry standard 7-day trial.
+**Revisit by:** After 100 trial signups — measure conversion vs cap impact
