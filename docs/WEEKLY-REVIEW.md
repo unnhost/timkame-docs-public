@@ -62,3 +62,31 @@
 **Decision:** продолжаем по плану. Фокус следующей сессии — cherry-pick frontend (Phase 1 дизайн-система), webhook signature verification параллельно.
 
 **Примечание про velocity:** С Claude Code скорость в разы выше исходной оценки 250-300 часов / 16-20 недель. Оценки часов убраны из roadmap. Фокус на порядке и зависимостях.
+
+---
+
+### Week ending: 2026-04-21 (session 2)
+
+**Hours worked:** full day session
+
+**Planned vs actual:**
+- v5 frontend full port → done (PR #26: 150 files, 29,900 lines)
+- v5 landing HTML as-is → done (PR #28-29: 72 pages with cat mascot)
+- Unified content blocks → done (PR #30-31: change price once, updates everywhere)
+- Dashboard audit + cleanup → done (PR #33: 22 dead links removed)
+- Signup button fix → done (PR #34: Turnstile token bypass)
+- Signup API v6 schema rewrite → done (PR #35: organizations + user_profiles)
+- Resend email integration → done (DEC-033: branded templates with cat mascot)
+- Auth confirm flow fixed → done (session cookies on redirect)
+- Logout via /logout page → done (workaround for broken dashboard JS)
+- Webhook signatures PR #25 → ready to merge (CI green, not deployed)
+
+**PRs merged this session:** #24, #26, #27, #28, #29, #30, #31, #32, #33, #34, #35, #36 + 5 direct main commits
+
+**Задачи что постоянно откладываются:**
+- Webhook signature enforcement (PR ready, not merged — needs logging-only rollout)
+- Forwarding wizard (3rd week)
+- Dashboard logout button (v5 JS breaks it)
+- Password reset e2e test
+
+**Decision:** signup flow complete end-to-end. Pricing model approved. Next: merge webhook PR, fix dashboard, implement pricing v2.
